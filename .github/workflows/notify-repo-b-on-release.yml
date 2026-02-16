@@ -6,16 +6,18 @@ on:
 
 permissions:
   contents: read
-  actions: write
+  actions: write # needed to send dispatch
 
 jobs:
   dispatch:
     runs-on: ubuntu-latest
 
     steps:
+      # Optional: dump event payload for debugging
       - name: Dump event payload
         run: echo '${{ toJson(github.event) }}'
 
+      # Send repository_dispatch to Repo B
       - name: Send repository_dispatch to Repo B
         env:
           PAT: ${{ secrets.REPO_B_DISPATCH_TOKEN }}
@@ -25,4 +27,4 @@ jobs:
             -H "Authorization: Bearer $PAT" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/johnmhoran/408pinetrail.com/dispatches \
-            -d "{\"event_type\":\"repo_a_release\",\"client_payload\":{\"tag\":\"$TAG\"}}"
+            -d "{\"event_type\":\"repo_a_release\",\"client_payload\":{\"tag\":\"$TAG\",\"repo_name\":\"docusaurus-sandbox-2026-01-15\"}}"
