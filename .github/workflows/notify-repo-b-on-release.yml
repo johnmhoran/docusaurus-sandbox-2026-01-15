@@ -1,0 +1,24 @@
+name: Notify Repo B on Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send repository_dispatch to Repo B
+        env:
+          PAT: ${{ secrets.REPO_B_DISPATCH_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer $PAT" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/johnmhoran/408pinetrail.com/dispatches \
+            -d "{\"event_type\":\"repo_a_release\",\"client_payload\":{\"tag\":\"$TAG\"}}"

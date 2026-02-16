@@ -7,12 +7,29 @@
 
 import { themes as prismThemes } from 'prism-react-renderer';
 
+// 2026-02-15 Sunday 11:08:44.
+const path = require('path');
+// process.cwd() is /your-project/website
+// path.join(..., '..') moves it to /your-project
+const actualRootPath = path.join(process.cwd(), '..');
+const projectFolderName = path.basename(actualRootPath);
+
+// 2026-02-14 Saturday 17:39:34.
+// 2026-01-31 Saturday 13:11:26.Add timestamp to footer
+const getDeploymentTimestamp = () => {
+    const now = new Date();
+    const date = now.toISOString().split('T')[0]; // 2025-09-13
+    const time = now.toISOString().split('T')[1].split('.')[0]; // 23:45:32
+    const weekday = now.toLocaleDateString('en-US', { weekday: 'long' });
+    return `${date} ${time} UTC`;
+};
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     // title: 'AboutCode.org',
-    title: '160ColumbiaHeights',
+    title: 'docusaurus-sandbox-2026-01-15',
     tagline: '[Tagline . . . ?]',
     // favicon: 'img/nexB_icon.png',
     favicon: "img/favicon-test.ico",
@@ -188,7 +205,11 @@ const config = {
                 //     { label: 'Privacy Policy', to: '/privacy' },
                 //     { label: 'Terms of Service', to: '/terms' },
                 // ],
-                copyright: `Copyright John M. Horan. &nbsp; All rights reserved. &nbsp; Built with Docusaurus.`,
+                // copyright: `Copyright John M. Horan. &nbsp; All rights reserved. &nbsp; Built with Docusaurus.`,
+                // copyright: `Copyright John M. Horan. &nbsp; All rights reserved. &nbsp; Built with Docusaurus. <br />Last deployed: ${getDeploymentTimestamp()} <br /><span style="color: #00ff00;">${process.cwd()}</span>`,
+                // Build path: ${process.cwd()}
+
+                copyright: `Copyright John M. Horan. &nbsp; All rights reserved. &nbsp; Built with Docusaurus. <br />Last deployed: ${getDeploymentTimestamp()} | <span style="background-color: #ffffff; padding: 0px 5px; border-radius: 5px; color: #000000;">${projectFolderName}</span>`,
             },
             prism: {
                 theme: prismThemes.github,

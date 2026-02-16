@@ -1,11 +1,12 @@
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import HomeIntro from './HomeIntro.mdx';
-import ProjectOverview from './ProjectOverview.md';
-import Supporters from './Supporters.md';
-import SupporterGrid from '@site/src/components/SupporterGrid';
-import ProjectGridTemplate from '@site/src/components/ProjectGridTemplate';
+import Misc01 from './Misc01.md';
+// import SupporterGrid from '@site/src/components/SupporterGrid';
+// import Misc01 from '@site/src/components/ProjectGridTemplate';
 import styles from './styles.module.css';
+// 2026-02-15 Sunday 12:38:42.
+import Intro from './intro.mdx';
 
 export default function HomepageContent() {
     // Get baseUrl from Docusaurus context
@@ -13,14 +14,18 @@ export default function HomepageContent() {
     const { baseUrl } = siteConfig;
 
     return (
-        <main>
+        // <main>
+        <main className={styles.mainContent}>
             <section className={styles.sectionContainer}>
-                <div
+                {/* <div
                     className={styles.sectionHeader}
                     style={{ marginBottom: '15px', marginTop: '15px' }}
                 >
-                    {/* <h1>AboutCode Capabilities</h1> */}
+                    <h1>A header?</h1>
+                </div> */}
 
+                <div className={styles.card} style={{ backgroundColor: '#f6f7f8', padding: '10px' }}>
+                    <Intro />
                 </div>
                 <div className={styles.sectionIntro}>
                     <HomeIntro />
@@ -33,13 +38,15 @@ export default function HomepageContent() {
                     style={{ marginBottom: '15px', marginTop: '15px' }}
                 >
                     {/* <h1>AboutCode Projects Overview</h1> */}
-                    <h1>Why you earthlings have nothing to fear from us</h1>
+                    <h1>Heading 1</h1>
                 </div>
-                <div>Uh . . . .</div>
+                <div className={styles.sectionIntro}>
+                    This is inside `/home/jmh/dev/jmh2026/docusaurus-sandbox-2026-01-15/website/src/components/HomepageContent/index.js`.
+                </div>
 
-                {/* <div className={styles.sectionIntro}>
-                    <ProjectOverview />
-                </div> */}
+                <div className={styles.sectionIntro}>
+                    <Misc01 />
+                </div>
 
                 {/* <ProjectGridTemplate /> */}
             </section>

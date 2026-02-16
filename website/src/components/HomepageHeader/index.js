@@ -6,10 +6,10 @@ export default function HomepageHeader() {
     <div className={styles.fullHero}>
       <div className={styles.heroInner}>
         <h1 className={styles.heroTitle}>
-          Welcome to 408PineTrail.com.
+          Welcome to this Docusaurus sandbox.
         </h1>
         <p className={styles.heroSubtitle}>
-          Duners rock!
+          Let's see what can be done with the `repository_dispatch` event.
         </p>
       </div>
     </div>
